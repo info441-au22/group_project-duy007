@@ -13,9 +13,10 @@ async function main() {
         time_open: String, 
         time_close: String, 
         description: String,
-        charging: String,
-        computer_access: String,
+        charging: Boolean,
+        computer_access: Boolean,
         private_space: Boolean,
+        reservation_required: Boolean, 
         likes: [String],
         modified_date: Date
     });

@@ -11,6 +11,7 @@ router.get("/", async (req, res, next) => {
     if (req.query.time_close) filters.time_close = req.query.time_close
     if (req.query.charging) filters.charging = req.query.charging
     if (req.query.computer_access) filters.computer_access = req.query.computer_access
+    if (req.query.reservation_required) filters.reservation_required = req.query.reservation_required
     if (req.query.private_space) filters.private_space = req.query.private_space
     try {
         let rooms = []
@@ -41,6 +42,7 @@ router.post("/", async (req, res, next) => {
                 description: roomObj.description,
                 charging: roomObj.charging,
                 computer_access: roomObj.computer_access,
+                reservation_required: roomObj.reservation_required,
                 private_space: roomObj.private_space,
                 modified_date: Date.now()
             });
