@@ -20,49 +20,55 @@
   <!-- I moved all of the filtering items and the 'Creteria' heading inside a div elemeent with class called filter-->
   <div class="filter">
     <h2>Criteria</h2>
-    <div>
-      <input type="checkbox" id="charging" name="charging" checked>
-      <label for="charging">Charging</label>
+    <div class="left">
+      <div>
+        <input type="checkbox" id="charging" name="charging" checked>
+        <label for="charging">Charging</label>
+      </div>
+      <div>
+        <input type="checkbox" id="computer_access" name="computer_access" checked>
+        <label for="computer_access">Computer Access</label>
+      </div>
+      <div>
+        <input type="checkbox" id="private_space" name="private_space" checked>
+        <label for="private_space">Private Space</label>
+      </div>
+      <div>
+        <input type="checkbox" id="reservation_required" name="reservation_required">
+        <label for="reservation_required">Reservation</label>
+      </div>
     </div>
-    <div>
-      <input type="checkbox" id="computer_access" name="computer_access" checked>
-      <label for="computer_access">Computer Access</label>
+
+    <div class="right">
+      <div>
+        <label for="location-select">Choose a location:</label>
+        <select name="location" id="location">
+            <option value="North Campus">North</option>
+            <option value="Central Campus">Central</option>
+            <option value="South Campus">South</option>
+            <option value="West Campus">West</option>
+            <option value="East Campus">East</option>
+        </select>
+      </div>
+      <div>
+        <label for="building">Building</label>
+        <input type="text" id="building" name="building" placeholder="MGH">
+      </div>
+      <div>
+        <label for="room_number">Room Number</label>
+        <input type="text" id="room_number" name="room_number" placeholder="430">
+      </div>
+      <div>
+        <label for="sound-select">Choose a noise level:</label>
+        <select name="sound_level" id="sound_level">
+            <option value="Quiet">Quiet</option>
+            <option value="Somewhat Quiet">Somewhat Quiet</option>
+            <option value="Normal">Normal</option>
+            <option value="Loud">Loud</option>
+        </select>
+      </div>
     </div>
-    <div>
-      <input type="checkbox" id="private_space" name="private_space" checked>
-      <label for="private_space">Private Space</label>
-    </div>
-    <div>
-      <input type="checkbox" id="reservation_required" name="reservation_required">
-      <label for="reservation_required">Reservation</label>
-    </div>
-    <div>
-      <label for="location-select">Choose a location:</label>
-      <select name="location" id="location">
-          <option value="North Campus">North</option>
-          <option value="Central Campus">Central</option>
-          <option value="South Campus">South</option>
-          <option value="West Campus">West</option>
-          <option value="East Campus">East</option>
-      </select>
-    </div>
-    <div>
-      <label for="building">Building</label>
-      <input type="text" id="building" name="building" placeholder="MGH">
-    </div>
-    <div>
-      <label for="room_number">Room Number</label>
-      <input type="text" id="room_number" name="room_number" placeholder="430">
-    </div>
-    <div>
-      <label for="sound-select">Choose a noise level:</label>
-      <select name="sound_level" id="sound_level">
-          <option value="Quiet">Quiet</option>
-          <option value="Somewhat Quiet">Somewhat Quiet</option>
-          <option value="Normal">Normal</option>
-          <option value="Loud">Loud</option>
-      </select>
-    </div>
+
     <div>
       <label for="time_open">Choose room open time (opening hours 6:00AM to 12:00PM):</label>
       <input type="time" id="time_open" name="time_open"
@@ -75,7 +81,8 @@
             min="13:00" max="24:59" value="18:00" required>
       <span class="validity"></span>
     </div>
-    <input type="submit" onClick="queryRoom()">
+    <br>
+    <input class="submit-button" type="submit" onClick="queryRoom()">
 
   </div>
   <br>
