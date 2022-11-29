@@ -18,11 +18,22 @@ a {
   padding: 10px;
   text-align: center;
   margin: 0px;
+  /*font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;*/
+  font-size: 60;
 }
 
 .filter{
   background-color: rgb(0, 43, 83);
   padding: 5px;
+  color: white;
+  margin: 0px;
+}
+
+.title, .filter h2{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+
 }
 /*
 For the validity mark nex to time selection box
