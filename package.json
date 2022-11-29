@@ -14,5 +14,17 @@
     "microsoft-identity-express": "^1.0.0-beta",
     "mongoose": "^6.7.4",
     "morgan": "~1.9.1"
-  }
+  },
+  "description": "The University of Washington(UW) is a large and expansive campus with a variety of buildings that many students will never have a reason to visit. Many of these buildings are home to study spaces that go untouched or remain a secret to only a handful of students at a time. We want to make the knowledge of these study spaces accessible to all UW students. Although study spaces such as Odegaard and Suzzallo Allen Libraries are great and are home to many students’ study sessions throughout the year, they do not come without their drawbacks, such as overcrowdedness, noise levels, and proximity to other buildings. We do not believe a tool where it aggregates all the study areas within the UW under one site exists. Thus, as developers as well as graduating students, we would like to pass these gems of the university to the younger generation.\r ## Technical Description",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/info441-au22/group_project-duy007.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/info441-au22/group_project-duy007/issues"
+  },
+  "homepage": "https://github.com/info441-au22/group_project-duy007#readme"
 }
