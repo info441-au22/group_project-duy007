@@ -11,7 +11,8 @@ const escapeHTML = str => !str ? str : str.replace(/[&<>'"]/g,
 function getLastUpdate(modified_date) {
     const time_diff = Date.now() - Date.parse(modified_date);
     const dd = Math.floor(time_diff/1000/60/60/24);
-    if (dd > 0) return new Date(time_diff).toDateString();
+    console.log(time_diff)
+    if (dd > 0) return new Date(modified_date).toDateString();
     const hh = Math.floor(time_diff/1000/60/60);
     if (hh > 0) return `${hh} Hours ago`;
     const mm = Math.floor(time_diff/1000/60);
