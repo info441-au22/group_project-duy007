@@ -1,0 +1,14 @@
+[{
+    "location": "Central Campus",
+    "building": "KNE",
+    "room_number": "120",
+    "sound_level": "Loud",
+    "time_open": "42300000",
+    "time_close": "71100000",
+    "description": "Not a study room",
+    "charging": false,
+    "computer_access": false,
+    "private_space": false,
+    "reservation_required": false,
+    "modified_date": 1669695553727
+}]

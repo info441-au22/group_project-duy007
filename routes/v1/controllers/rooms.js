@@ -6,20 +6,18 @@ router.get("/", async (req, res, next) => {
     let filters = {}
     if (req.query.location) filters.location = req.query.location
     if (req.query.building)  filters.building = req.query.building
+    if (req.query.sound_level)  filters.sound_level = req.query.sound_level
     if (req.query.room_number) filters.room_number = req.query.room_number
     if (req.query.time_open) filters.time_open = req.query.time_open
     if (req.query.time_close) filters.time_close = req.query.time_close
-    if (req.query.charging) filters.charging = req.query.charging
-    if (req.query.computer_access) filters.computer_access = req.query.computer_access
-    if (req.query.reservation_required) filters.reservation_required = req.query.reservation_required
-    if (req.query.private_space) filters.private_space = req.query.private_space
+    if (req.query.charging) req.query.charging==='true' ? filters.charging = req.query.charging: filters.charging = {$ne: true}
+    if (req.query.computer_access) req.query.computer_access==='true' ? filters.computer_access = req.query.computer_access : filters.computer_access = {$ne: true}
+    if (req.query.reservation_required) req.query.reservation_required==='true' ? filters.reservation_required = req.query.reservation_required : filters.reservation_required = {$ne: true}
+    if (req.query.private_space) req.query.private_space==='true' ? filters.private_space = req.query.private_space : filters.private_space = {$ne: true}
+    console.log(filters)
     try {
-        let rooms = []
-        if (Object.keys(filters).length > 0) {
-            rooms = await req.models.Room.find(filters);
-        } else {
-            rooms = await req.models.Room.find();
-        }
+        let rooms = await req.models.Room.find(filters);
+        console.log(rooms)
         res.json(rooms)
     } catch (error) {
         console.log(error.message)
