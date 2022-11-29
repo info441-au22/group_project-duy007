@@ -67,6 +67,6 @@ app.get('/unauthorized', (req, res) => {
     res.status(401).send("Error: Unauthorized")
 })
 
-app.use('/api', apiv1Router);
+app.use('/api/v1', apiv1Router);
 
 export default app;
