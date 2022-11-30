@@ -46,7 +46,20 @@ a {
 
 /* i didn't use flex for this I just did it maunally*/
 /*will change later*/
-.right{
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+#room_box{
+  display: flex;
+  justify-content: space-between;
+  color:blueviolet
+}
+
+/*.right{
   width:33%;
   float:right;
   margin-right:5px;
@@ -57,7 +70,7 @@ a {
   width:47%;
   margin-top:10px;
   margin-left: 10px;
-}
+}*/
 
 .submit-button{
   background-color: rgb(1, 27, 51);;
@@ -68,8 +81,8 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 10px 650px; /* I gotta fix this later cuz i did this number manually*/
-  display: block;
+  margin: 10px 650px; /* I gotta fix this later cuz i did this number manually
+  display: block;*/
 
   cursor: pointer;
   border-radius: 25px;
