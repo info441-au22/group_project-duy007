@@ -28,7 +28,6 @@ a {
   padding: 10px;
   text-align: center;
   margin: 0px;
-  /*font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;*/
   font-weight: bold;
   font-size: 60;
 }
@@ -40,38 +39,12 @@ a {
   padding-top: 10px;
 }
 
-/* .title, .filter h2{
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}*/
-
-/* i didn't use flex for this I just did it maunally*/
-/*will change later*/
-.flex-container {
+.filter-flex {
   display: flex;
   justify-content: space-between;
   padding-left: auto;
   padding-right: auto;
 }
-
-/*
-#room_box{
-  display: flex;
-  justify-content: space-between;
-  color:blueviolet;
-}*/
-
-/*.right{
-  width:33%;
-  float:right;
-  margin-right:5px;
-}
-
-.left{
-  float: left;
-  width:47%;
-  margin-top:10px;
-  margin-left: 10px;
-}*/
 
 .submit-button{
   background-color: rgb(1, 27, 51);;
@@ -82,20 +55,14 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 10px 650px; /* I gotta fix this later cuz i did this number manually
-  display: block;*/
-
+  margin: 10px 645px; /* I gotta fix this later cuz i did this number manually*/
   cursor: pointer;
   border-radius: 25px;
 }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 30px;
-}
 
-.boxes .container {
+
+.container #room_box{
   display: flex;
   justify-content: space-between
 }
@@ -110,13 +77,31 @@ a {
 
 /* 
 #holder {
-  flex: 1;
   color: blueviolet;
-  border-radius: 10px;
-  margin: 20px 10px;
   box-shadow: 0 3px 5px rgba(0,0,0, 0.6);
+<<<<<<< HEAD
   padding: 15px 20px;
 } */
+=======
+  /*padding: 15px 20px;
+  flex: 1;
+  margin: 20px 10px;
+  border-radius: 10px;
+  */
+}
+/*
+#room_box{
+  display: flex;
+  justify-content: space-between;
+  color:blueviolet;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+*/
+>>>>>>> ac3213422b24414a63634991bdb889a0d67c4a14
 
 
 /*
