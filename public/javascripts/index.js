@@ -28,7 +28,7 @@ async function loadRooms(url){
                 </div>
             </div>
         </div>`
-    });
+    }).join('\n');
     document.getElementById("room_box").innerHTML = roomsHTML
 }
 
