@@ -2,11 +2,10 @@ body {
   padding: 0px;
   font: 14px;
   font-family: Trebuchet MS, sans-serif;
-  background-color: rgb(0, 43, 83);
+  background-color: rgb(194, 211, 226);
 }
 
 h2 {
-  color:  rgb(1, 27, 51);
   font-family:Trebuchet MS, sans-serif;
 }
 
@@ -30,15 +29,16 @@ a {
 }
 
 .filter{
-  background-color: rgb(203, 213, 221);
+  background-color: rgb(1, 40, 71);
   padding: 5px;
   color: white;
   padding-top: 10px;
 }
 
-.title, .filter h2{
+/* .title, .filter h2{
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+}*/
+
 /* i didn't use flex for this I just did it maunally*/
 /*will change later*/
 .right{
@@ -55,7 +55,7 @@ a {
 }
 
 .submit-button{
-  background-color: rgb(1, 27, 51);
+  background-color: rgb(1, 27, 51);;
   border: none;
   color: white;
   padding: 12px;
