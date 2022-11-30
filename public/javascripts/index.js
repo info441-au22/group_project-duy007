@@ -9,7 +9,7 @@ async function loadRooms(url){
     console.log(roomsJson)
     let roomsHTML = await Promise.all(roomsJson.map(async room => {
         return `
-        <div class="room card mb-3 px-0">
+        <div class="room card mb-3 px-0" id="holder">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src=${room.img} class="img-fluid" alt="...">
