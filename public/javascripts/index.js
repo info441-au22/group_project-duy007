@@ -35,20 +35,20 @@ async function loadRooms(url){
 
 async function queryRoom(){
     let query_url = `api/${apiVersion}/rooms?`
-    if (document.getElementById("charging").checked) query_url.concat(`charging=true&`)
-    if (document.getElementById("computer_access").checked) query_url.concat(`computer_access=true&`)
-    if (document.getElementById("private_space").checked) query_url.concat(`&private_space=true&`)
-    if (document.getElementById("reservation_required").checked) query_url.concat(`&reservation_required=true&`)
+    if (document.getElementById("charging").checked) query_url = query_url.concat(`charging=true&`)
+    if (document.getElementById("computer_access").checked) query_url = query_url.concat(`computer_access=true&`)
+    if (document.getElementById("private_space").checked) query_url = query_url.concat(`&private_space=true&`)
+    if (document.getElementById("reservation_required").checked) query_url = query_url.concat(`&reservation_required=true&`)
     const location = encodeURIComponent(document.getElementById("location").value)
-    query_url = query_url.concat(`location=${location}&`)
+    if (location !== '') query_url = query_url.concat(`location=${location}&`)
     const sound_level = encodeURIComponent(document.getElementById("sound_level").value)
-    query_url = query_url.concat(`sound_level=${sound_level}&`)
+    if (sound_level !== '') query_url = query_url.concat(`sound_level=${sound_level}&`)
     const building_value = escapeHTML(document.getElementById("building").value)
     if (building_value.length >= 3) query_url = query_url.concat(`building=${encodeURIComponent(building_value)}&`)
     const room_number_value = escapeHTML(document.getElementById("room_number").value)
     if (room_number_value.length >= 1) query_url = query_url.concat(`room_number=${encodeURIComponent(room_number_value)}&`)
     if (document.getElementById("time_open").value !== '') query_url.concat(`time_open=${encodeURIComponent(stringToTime(document.getElementById("time_open").value))}&`)
     if (document.getElementById("time_close").value !== '') query_url.concat(`time_open=${encodeURIComponent(stringToTime(document.getElementById("time_open").value))}`)
-    query_url = query_url.concat(`time_close=${encodeURIComponent(stringToTime(document.getElementById("time_close").value))}`)
+    if (query_url.endsWith("&")) query_url = query_url.substring(0, query_url.length-1)
     loadRooms(query_url)
 }
