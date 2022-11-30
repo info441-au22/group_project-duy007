@@ -16,12 +16,13 @@ async function loadRooms(url){
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                    <h3 class="fs-6 card-title">${room.building} ${room.room_number}<h3>
+                    <h3 class="fs-6 card-titlefs-7 mb-0">${room.room_number !== "None" ? `${room.building} ${room.room_number}`: `${room.building}`}</h3>
+                    <p class="fs-8 card-text">${room.location}</p>
                     <p class="fs-7 card-text">${room.description}</p>
                     <p class="fs-7 card-text">Hours: ${timeToString(room.time_open)} - ${timeToString(room.time_close)}</p>
-                    <p class="fs-7 card-text">Charging: ${room.charging ? "Available": "Not available"}</p>
-                    <p class="fs-7 card-text">Computer: ${room.computer_access ? "Available": "Not available"}</p>
-                    <p class="fs-7 card-text">Private Space: ${room.private_space ? "Available": "Not available"}</p>
+                    <p class="fs-7 card-text mb-0">Charging: ${room.charging ? "Available": "Not available"}</p>
+                    <p class="fs-7 card-text mb-0">Computer: ${room.computer_access ? "Available": "Not available"}</p>
+                    <p class="fs-7 card-text mb-0">Private Space: ${room.private_space ? "Available": "Not available"}</p>
                     <p class="fs-7 card-text">Reservation: ${room.private_space ? "Required": "None"}</p>
                     <p class="fs-7 card-text">Last Updated: ${getLastUpdate(room.modified_date)}<p>
                     </div>

@@ -17,6 +17,11 @@ a {
   font-size: .75rem;
 }
 
+.fs-8 {
+  font-size: .65rem;
+  color: grey
+}
+
 .title{
   background-color: rgb(1, 27, 51);
   color: white;
