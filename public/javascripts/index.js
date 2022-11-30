@@ -7,12 +7,12 @@ async function loadRooms(url){
     document.getElementById("room_box").innerText = "Loading...";
     let roomsJson = await fetchJSON(url);
     console.log(roomsJson)
-    let roomsHTML = roomsJson.map(room => {
+    let roomsHTML = await Promise.all(roomsJson.map(async room => {
         return `
         <div class="room card mb-3 px-0">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="http://commons.trincoll.edu/library/files/2015/02/LITC113_2.jpg" class="img-fluid" alt="...">
+                    <img src=${room.img} class="img-fluid" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -28,8 +28,8 @@ async function loadRooms(url){
                 </div>
             </div>
         </div>`
-    }).join('\n');
-    document.getElementById("room_box").innerHTML = roomsHTML
+    }))
+    document.getElementById("room_box").innerHTML = roomsHTML.join('\n');
 }
 
 async function queryRoom(){

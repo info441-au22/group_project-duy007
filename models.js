@@ -13,6 +13,7 @@ async function main() {
         time_open: Number, 
         time_close: Number, 
         description: String,
+        imgs: String,
         charging: Boolean,
         computer_access: Boolean,
         private_space: Boolean,
