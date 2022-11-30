@@ -26,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/info441-au22/group_project-duy007/issues"
   },
-  "homepage": "https://github.com/info441-au22/group_project-duy007#readme"
+  "homepage": "https://github.com/info441-au22/group_project-duy007#readme",
+  "devDependencies": {}
 }
