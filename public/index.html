@@ -22,20 +22,16 @@
     <h2>Criteria</h2>
     <div class="left">
       <div>
-        <input type="checkbox" id="charging" name="charging" checked>
-        <label for="charging">Charging</label>
+        <label for="time_open">Choose room open time (opening hours 6:00AM to 12:00PM):</label>
+        <input type="time" id="time_open" name="time_open"
+              min="06:00" max="12:59" value="06:00"required>
+        <span class="validity"></span>
       </div>
       <div>
-        <input type="checkbox" id="computer_access" name="computer_access" checked>
-        <label for="computer_access">Computer Access</label>
-      </div>
-      <div>
-        <input type="checkbox" id="private_space" name="private_space" checked>
-        <label for="private_space">Private Space</label>
-      </div>
-      <div>
-        <input type="checkbox" id="reservation_required" name="reservation_required">
-        <label for="reservation_required">Reservation</label>
+        <label for="time_close">Choose room closed time (opening hours 1:00PM to 12:59AM):</label>
+        <input type="time" id="time_close" name="time_closed"
+              min="13:00" max="24:59" value="18:00" required>
+        <span class="validity"></span>
       </div>
     </div>
 
@@ -69,17 +65,28 @@
       </div>
     </div>
 
+    <!--
+      note to self
+      below add a new div element (before br) and include stuff abt charing +private etc checkoboses
+      delete later^^
+    -->
     <div>
-      <label for="time_open">Choose room open time (opening hours 6:00AM to 12:00PM):</label>
-      <input type="time" id="time_open" name="time_open"
-            min="06:00" max="12:59" value="06:00"required>
-      <span class="validity"></span>
-    </div>
-    <div>
-      <label for="time_close">Choose room closed time (opening hours 1:00PM to 12:59AM):</label>
-      <input type="time" id="time_close" name="time_closed"
-            min="13:00" max="24:59" value="18:00" required>
-      <span class="validity"></span>
+      <div>
+        <input type="checkbox" id="charging" name="charging" checked>
+        <label for="charging">Charging</label>
+      </div>
+      <div>
+        <input type="checkbox" id="computer_access" name="computer_access" checked>
+        <label for="computer_access">Computer Access</label>
+      </div>
+      <div>
+        <input type="checkbox" id="private_space" name="private_space" checked>
+        <label for="private_space">Private Space</label>
+      </div>
+      <div>
+        <input type="checkbox" id="reservation_required" name="reservation_required">
+        <label for="reservation_required">Reservation</label>
+      </div>
     </div>
     <br>
     <input class="submit-button" type="submit" onClick="queryRoom()">

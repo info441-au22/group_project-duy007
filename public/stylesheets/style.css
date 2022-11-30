@@ -27,13 +27,14 @@ a {
   background-color: rgb(0, 43, 83);
   padding: 5px;
   color: white;
-  margin: 0px;
+  padding-top: 10px;
 }
 
 .title, .filter h2{
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+/* i didn't use flex for this I just did it maunally*/
+/*will change later*/
 .right{
   width:33%;
   float:right;
@@ -42,20 +43,23 @@ a {
 
 .left{
   float: left;
-  width:33%;
+  width:47%;
   margin-top:10px;
+  margin-left: 10px;
 }
 
 .submit-button{
-  background-color: rgb(1, 27, 51); /* Green */
+  background-color: rgb(1, 27, 51);
   border: none;
   color: white;
-  padding: 10px;
+  padding: 12px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 10px 600px;
+  margin: 10px 650px; /* I gotta fix this later cuz i did this number manually*/
+  display: block;
+
   cursor: pointer;
   border-radius: 25px;
 }
