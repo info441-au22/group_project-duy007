@@ -48,7 +48,7 @@ async function queryRoom(){
     const room_number_value = escapeHTML(document.getElementById("room_number").value)
     if (room_number_value.length >= 1) query_url = query_url.concat(`room_number=${encodeURIComponent(room_number_value)}&`)
     if (document.getElementById("time_open").value !== '') query_url = query_url.concat(`time_open=${encodeURIComponent(stringToTime(document.getElementById("time_open").value))}&`)
-    if (document.getElementById("time_close").value !== '') query_url = query_url.concat(`time_open=${encodeURIComponent(stringToTime(document.getElementById("time_open").value))}`)
+    if (document.getElementById("time_close").value !== '') query_url = query_url.concat(`time_close=${encodeURIComponent(stringToTime(document.getElementById("time_close").value))}`)
     if (query_url.endsWith("&")) query_url = query_url.substring(0, query_url.length-1)
     loadRooms(query_url)
 }
