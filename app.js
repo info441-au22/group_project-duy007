@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import sessions from 'express-session'
 import msIdExpress from 'microsoft-identity-express'
+import fileUpload from 'express-fileupload';
 
 const appSettings = {
     appCredentials: {
@@ -34,6 +35,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(fileUpload({
+    createParentPath: true
+}));
 
 app.use((req, res, next) => {
     req.models = models;

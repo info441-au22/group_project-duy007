@@ -6,6 +6,7 @@ async function main() {
     console.log("Connect to mongoDB");
     await mongoose.connect("mongodb+srv://info441:info441@cluster0.nbsx4fd.mongodb.net/studyRoom?retryWrites=true&w=majority");
     const roomSchema = new mongoose.Schema({
+        image: String,
         location: String, 
         building: String, 
         room_number: String,

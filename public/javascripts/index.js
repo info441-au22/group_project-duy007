@@ -1,5 +1,8 @@
 async function init(){
     await loadIdentity();
+    let formContent = loadInsertForm();
+    document.getElementById("insert_form").innerHTML = formContent;
+    document.getElementById("room_form").addEventListener('submit', loadRooms())
     loadRooms(`api/${apiVersion}/rooms/`);
 }
 
@@ -12,7 +15,7 @@ async function loadRooms(url){
         <div class="room card mb-3 px-0" id="holder">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src=${room.img} class="img-fluid" alt="...">
+                    <img src=${room.image} class="img-fluid" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -33,6 +36,10 @@ async function loadRooms(url){
     document.getElementById("room_box").innerHTML = roomsHTML.join('\n');
 }
 
+function insertSubmit(event) {
+    loadRooms();
+}
+
 async function queryRoom(){
     let query_url = `api/${apiVersion}/rooms?`
     if (document.getElementById("charging").checked) query_url = query_url.concat(`charging=true&`)
@@ -51,4 +58,76 @@ async function queryRoom(){
     if (document.getElementById("time_close").value !== '') query_url = query_url.concat(`time_close=${encodeURIComponent(stringToTime(document.getElementById("time_close").value))}`)
     if (query_url.endsWith("&")) query_url = query_url.substring(0, query_url.length-1)
     loadRooms(query_url)
+}
+
+function loadInsertForm() {
+    let query_url = `api/${apiVersion}/rooms`
+    return `    <form id="room_form" action="${query_url}" method="POST" enctype="multipart/form-data">
+    <label for="image">Upload Sample Image of Study Space:</label>
+    <input type="file" name="image" accept="image/*"/>
+    <div>
+      <div>
+        <label for="input_building">Building</label>
+        <input type="text" id="input_building" name="input_building" placeholder="MGH">
+      </div>
+      <div>
+        <label for="input_room_number">Room Number</label>
+        <input type="text" id="input_room_number" name="input_room_number" placeholder="430">
+      </div>
+      <div>
+        <label for="input_description">Description</label>
+        <input type="text" id="input_description" name="input_description" placeholder="Input a short description">
+        </div>
+      <div>
+        <label for="sound-select">Choose a noise level:</label>
+        <select name="input_sound_level" id="input_sound_level">
+            <option value="">Please choose a noise level</option>
+            <option value="Quiet">Quiet</option>
+            <option value="Somewhat Quiet">Somewhat Quiet</option>
+            <option value="Normal">Normal</option>
+            <option value="Loud">Loud</option>
+        </select>
+      </div>
+      <label for="input_location-select">Choose a location:</label>
+      <select name="input_location" id="input_location">
+          <option value="">Please choose a location</option>
+          <option value="North Campus">North</option>
+          <option value="Central Campus">Central</option>
+          <option value="South Campus">South</option>
+          <option value="West Campus">West</option>
+          <option value="East Campus">East</option>
+      </select>
+    </div>
+    <div>
+      <label for="input_time_open">Choose room open time (opening hours 6:00AM to 12:00PM):</label>
+      <input type="time" id="input_time_open" name="input_time_open"
+            min="06:00" max="12:59" required>
+      <span class="validity"></span>
+    </div>
+    <div>
+      <label for="input_time_close">Choose room closed time (opening hours 1:00PM to 12:59AM):</label>
+      <input type="time" id="input_time_close" name="input_time_close"
+            min="13:00" max="24:59" required>
+      <span class="validity"></span>
+    </div>
+    <div>
+      <div>
+        <input type="checkbox" id="input_charging" name="input_charging" checked>
+        <label for="input_charging">Charging</label>
+      </div>
+      <div>
+        <input type="checkbox" id="input_computer_access" name="input_computer_access" checked>
+        <label for="input_computer_access">Computer Access</label>
+      </div>
+      <div>
+        <input type="checkbox" id="input_private_space" name="input_private_space" checked>
+        <label for="input_private_space">Private Space</label>
+      </div>
+      <div>
+        <input type="checkbox" id="input_reservation_required" name="input_reservation_required">
+        <label for="input_reservation_required">Reservation</label>
+      </div>
+    </div>
+    <input class="submit-button" type="submit" onClick="queryRoom()">
+  </form>`
 }

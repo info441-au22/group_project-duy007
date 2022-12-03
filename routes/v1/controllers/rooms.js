@@ -1,4 +1,5 @@
 import express from 'express';
+import stringToTime from '../utils/stringToTime.js';
 
 var router = express.Router();
 
@@ -29,19 +30,22 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
     if (req.session.isAuthenticated) {
         let roomObj = req.body;
+        const { image } = req.files;
+        image.mv(`./public/imgs/${image.name}`);
         try {
             let newRoom = new req.models.Room({
-                location: roomObj.location,
-                builidng: roomObj.building,
-                room_number: roomObj.room_number,
-                sound_level: roomObj.sound_level,
-                time_open: roomObj.time_open, 
-                time_close: roomObj.time_close, 
-                description: roomObj.description,
-                charging: roomObj.charging,
-                computer_access: roomObj.computer_access,
-                reservation_required: roomObj.reservation_required,
-                private_space: roomObj.private_space,
+                image: `imgs/${image.name}`,
+                location: roomObj.input_location,
+                builidng: roomObj.input_building,
+                room_number: roomObj.input_room_number,
+                sound_level: roomObj.input_sound_level,
+                time_open: stringToTime(roomObj.input_time_open), 
+                time_close: stringToTime(roomObj.input_time_close), 
+                description: roomObj.input_description,
+                charging: (roomObj.input_charging === "on"),
+                computer_access: (roomObj.input_computer_access === "on"),
+                reservation_required: (roomObj.input_reservation_required === "on"),
+                private_space: (roomObj.input_private_space === "on"),
                 modified_date: Date.now()
             });
             await newRoom.save();

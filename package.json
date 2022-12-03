@@ -10,6 +10,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
     "microsoft-identity-express": "^1.0.0-beta",
     "mongoose": "^6.7.4",
@@ -26,6 +27,5 @@
   "bugs": {
     "url": "https://github.com/info441-au22/group_project-duy007/issues"
   },
-  "homepage": "https://github.com/info441-au22/group_project-duy007#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/info441-au22/group_project-duy007#readme"
 }
