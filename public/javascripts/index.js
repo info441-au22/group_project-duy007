@@ -62,7 +62,8 @@ async function queryRoom(){
 
 function loadInsertForm() {
     let query_url = `api/${apiVersion}/rooms`
-    return `    <form id="room_form" action="${query_url}" method="POST" enctype="multipart/form-data">
+    return `
+    <form id="room_form" action="${query_url}" method="POST" enctype="multipart/form-data">
     <label for="image">Upload Sample Image of Study Space:</label>
     <input type="file" name="image" accept="image/*"/>
     <div>
