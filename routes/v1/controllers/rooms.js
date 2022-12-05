@@ -36,7 +36,7 @@ router.post("/", async (req, res, next) => {
             let newRoom = new req.models.Room({
                 image: `imgs/${image.name}`,
                 location: roomObj.input_location,
-                builidng: roomObj.input_building,
+                building: roomObj.input_building,
                 room_number: roomObj.input_room_number,
                 sound_level: roomObj.input_sound_level,
                 time_open: stringToTime(roomObj.input_time_open), 

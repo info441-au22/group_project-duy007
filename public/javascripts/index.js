@@ -12,13 +12,19 @@ async function loadRooms(url) {
     console.log(roomsJson);
     let roomsHTML = await Promise.all(roomsJson.map(async room => {
         return `
-        <div class="room card mb-3 px-0" id="holder">
+        <div class="room card mb-3 px-0" id="${room._id}">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src=${room.image} class="img-fluid" alt="...">
                 </div>
                 <div class="col-md-8">
+                    <span class="heart-button-span ${myIdentity? "": "d-none"}">
+                    ${room.likes && room.likes.includes(myIdentity) ? 
+                        `<button class="heart_button" onclick='unlikePost("${room._id}")'>&#x2665;</button>` : 
+                        `<button class="heart_button" onclick='likePost("${room._id}")'>&#x2661;</button>`} 
+                    </span>
                     <div class="card-body">
+                    <p class="fs-7">Likes: ${room.likes.length}<p>
                     <h3 class="fs-6 card-titlefs-7 mb-0">${room.room_number !== "None" ? `${room.building} ${room.room_number}` : `${room.building}`}</h3>
                     <p class="fs-8 card-text">${room.location}</p>
                     <p class="fs-7 card-text">${room.description}</p>
@@ -131,4 +137,21 @@ function loadInsertForm() {
     <input class="submit-button" type="submit" onClick="queryRoom()">
   </form>
   <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>`;
+}
+
+async function likeRoom(roomID){
+  await fetchJSON(`api/${apiVersion}/rooms/like`, {
+      method: "POST",
+      body: {roomID: roomID}
+  })
+  loadRooms(`api/${apiVersion}/rooms/`);
+}
+
+
+async function unlikeRoom(roomID){
+  await fetchJSON(`api/${apiVersion}/rooms/unlike`, {
+      method: "POST",
+      body: {roomID: roomID}
+  })
+  loadRooms(`api/${apiVersion}/rooms/`);
 }
