@@ -19,9 +19,9 @@ async function loadRooms(url) {
                 </div>
                 <div class="col-md-8">
                     <span class="heart-button-span ${myIdentity? "": "d-none"}">
-                    ${room.likes && room.likes.includes(myIdentity) ? 
-                        `<button class="heart_button" onclick='unlikeRoom("${room._id}")'>&#x2665;</button>` : 
-                        `<button class="heart_button" onclick='likeRoom("${room._id}")'>&#x2661;</button>`} 
+                    ${room.likes && room.likes.includes(myIdentity) ?
+                        `<button class="heart_button" onclick='unlikeRoom("${room._id}")'>&#x2665;</button>` :
+                        `<button class="heart_button" onclick='likeRoom("${room._id}")'>&#x2661;</button>`}
                     </span>
                     <div class="card-body">
                     <p class="fs-7">Likes: ${room.likes.length}<p>
@@ -69,72 +69,83 @@ async function queryRoom() {
 function loadInsertForm() {
     let query_url = `api/${apiVersion}/rooms`;
     return `    <form id="room_form" action="${query_url}" method="POST" enctype="multipart/form-data" target="hiddenFrame">
-    <label for="image">Upload Sample Image of Study Space:</label>
-    <input type="file" name="image" accept="image/*"/>
-    <div>
+    <div class="filter-flex">
       <div>
-        <label for="input_building">Building</label>
-        <input type="text" id="input_building" name="input_building" placeholder="MGH">
-      </div>
-      <div>
-        <label for="input_room_number">Room Number</label>
-        <input type="text" id="input_room_number" name="input_room_number" placeholder="430">
-      </div>
-      <div>
-        <label for="input_description">Description</label>
-        <input type="text" id="input_description" name="input_description" placeholder="Input a short description">
+        <label for="image">Upload Sample Image of Study Space:</label>
+        <input type="file" name="image" accept="image/*"/>
+        <div>
+          <label for="input_time_open">Choose room open time (opening hours 6:00AM to 12:00PM):</label>
+          <input type="time" id="input_time_open" name="input_time_open"
+                min="06:00" max="12:59" required>
+          <span class="validity"></span>
         </div>
+        <div>
+          <label for="input_time_close">Choose room closed time (opening hours 1:00PM to 12:59AM):</label>
+          <input type="time" id="input_time_close" name="input_time_close"
+                min="13:00" max="24:59" required>
+          <span class="validity"></span>
+        </div>
+      </div>
+
       <div>
-        <label for="sound-select">Choose a noise level:</label>
-        <select name="input_sound_level" id="input_sound_level">
-            <option value="">Please choose a noise level</option>
-            <option value="Quiet">Quiet</option>
-            <option value="Somewhat Quiet">Somewhat Quiet</option>
-            <option value="Normal">Normal</option>
-            <option value="Loud">Loud</option>
+        <div>
+          <input type="checkbox" id="input_charging" name="input_charging" checked>
+          <label for="input_charging">Charging</label>
+        </div>
+        <div>
+          <input type="checkbox" id="input_computer_access" name="input_computer_access" checked>
+          <label for="input_computer_access">Computer Access</label>
+        </div>
+        <div>
+          <input type="checkbox" id="input_private_space" name="input_private_space" checked>
+          <label for="input_private_space">Private Space</label>
+        </div>
+        <div>
+          <input type="checkbox" id="input_reservation_required" name="input_reservation_required">
+          <label for="input_reservation_required">Reservation</label>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="input_building">Building</label>
+          <input type="text" id="input_building" name="input_building" placeholder="MGH">
+        </div>
+        <div>
+          <label for="input_room_number">Room Number</label>
+          <input type="text" id="input_room_number" name="input_room_number" placeholder="430">
+        </div>
+        <div>
+          <label for="input_description">Description</label>
+          <input type="text" id="input_description" name="input_description" placeholder="Input a short description">
+          </div>
+        <div>
+          <label for="sound-select">Choose a noise level:</label>
+          <select name="input_sound_level" id="input_sound_level">
+              <option value="">Please choose a noise level</option>
+              <option value="Quiet">Quiet</option>
+              <option value="Somewhat Quiet">Somewhat Quiet</option>
+              <option value="Normal">Normal</option>
+              <option value="Loud">Loud</option>
+          </select>
+        </div>
+        <label for="input_location-select">Choose a location:</label>
+        <select name="input_location" id="input_location">
+            <option value="">Please choose a location</option>
+            <option value="North Campus">North</option>
+            <option value="Central Campus">Central</option>
+            <option value="South Campus">South</option>
+            <option value="West Campus">West</option>
+            <option value="East Campus">East</option>
         </select>
       </div>
-      <label for="input_location-select">Choose a location:</label>
-      <select name="input_location" id="input_location">
-          <option value="">Please choose a location</option>
-          <option value="North Campus">North</option>
-          <option value="Central Campus">Central</option>
-          <option value="South Campus">South</option>
-          <option value="West Campus">West</option>
-          <option value="East Campus">East</option>
-      </select>
+
     </div>
-    <div>
-      <label for="input_time_open">Choose room open time (opening hours 6:00AM to 12:00PM):</label>
-      <input type="time" id="input_time_open" name="input_time_open"
-            min="06:00" max="12:59" required>
-      <span class="validity"></span>
+
+    <div class="center-button">
+      <input class="submit-button" type="submit" onClick="queryRoom()">
     </div>
-    <div>
-      <label for="input_time_close">Choose room closed time (opening hours 1:00PM to 12:59AM):</label>
-      <input type="time" id="input_time_close" name="input_time_close"
-            min="13:00" max="24:59" required>
-      <span class="validity"></span>
-    </div>
-    <div>
-      <div>
-        <input type="checkbox" id="input_charging" name="input_charging" checked>
-        <label for="input_charging">Charging</label>
-      </div>
-      <div>
-        <input type="checkbox" id="input_computer_access" name="input_computer_access" checked>
-        <label for="input_computer_access">Computer Access</label>
-      </div>
-      <div>
-        <input type="checkbox" id="input_private_space" name="input_private_space" checked>
-        <label for="input_private_space">Private Space</label>
-      </div>
-      <div>
-        <input type="checkbox" id="input_reservation_required" name="input_reservation_required">
-        <label for="input_reservation_required">Reservation</label>
-      </div>
-    </div>
-    <input class="submit-button" type="submit" onClick="queryRoom()">
+
   </form>
   <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>`;
 }
