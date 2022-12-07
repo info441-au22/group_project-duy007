@@ -35,7 +35,6 @@ function timeToString(time) {
     const raw_time = time/1000/60/60
     const hh = Math.floor(raw_time);
     let mm = Math.ceil((raw_time%1)*60);
-    if (mm === 0) mm = "00";
     if (mm < 10) {
         mm = `0${mm}`
     }
