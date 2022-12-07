@@ -42,8 +42,9 @@ async function loadRooms(url) {
     document.getElementById("room_box").innerHTML = roomsHTML.join('\n');
 }
 
-function insertSubmit(event) {
-    loadRooms(`api/${apiVersion}/rooms/`);
+async function insertSubmit(event) {
+  await delay(5000);
+  await loadRooms(`api/${apiVersion}/rooms/`);
 }
 
 async function queryRoom() {
@@ -64,6 +65,16 @@ async function queryRoom() {
     if (document.getElementById("time_close").value !== '') query_url = query_url.concat(`time_close=${encodeURIComponent(stringToTime(document.getElementById("time_close").value))}`);
     if (query_url.endsWith("&")) query_url = query_url.substring(0, query_url.length - 1);
     loadRooms(query_url);
+    document.getElementById("charging").checked = false;
+    document.getElementById("computer_access").checked = false;
+    document.getElementById("private_space").checked = false;
+    document.getElementById("reservation_required").checked = false;
+    document.getElementById("location").value = "";
+    document.getElementById("sound_level").value = "";
+    document.getElementById("building").value = "";
+    document.getElementById("room_number").value = "";
+    document.getElementById("time_open").value = "";
+    document.getElementById("time_close").value = "";
 }
 
 function loadInsertForm() {
@@ -161,8 +172,8 @@ async function likeRoom(roomID){
 
 async function unlikeRoom(roomID){
   await fetchJSON(`api/${apiVersion}/rooms/unlike`, {
-      method: "POST",
-      body: {roomID: roomID}
+    method: "POST",
+    body: {roomID: roomID}
   })
   loadRooms(`api/${apiVersion}/rooms/`);
 }
