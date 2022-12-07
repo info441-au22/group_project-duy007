@@ -10,8 +10,8 @@ const escapeHTML = str => !str ? str : str.replace(/[&<>'"]/g,
 
 function getLastUpdate(modified_date) {
     const time_diff = Date.now() - Date.parse(modified_date);
-    const dd = Math.floor(time_diff/1000/60/60/24);
     console.log(time_diff)
+    const dd = Math.floor(time_diff/1000/60/60/24);
     if (dd > 0) return new Date(modified_date).toDateString();
     const hh = Math.floor(time_diff/1000/60/60);
     if (hh > 0) return `${hh} Hours ago`;
@@ -19,6 +19,7 @@ function getLastUpdate(modified_date) {
     if (mm > 0) return `${mm} minutes ago`;
     const ss = Math.floor(time_diff/1000/60);
     if (ss > 0) return `${ss} seconds ago`;
+    return `Right now`
 }
 
 function stringToTime(time_string) {
@@ -34,7 +35,10 @@ function timeToString(time) {
     const raw_time = time/1000/60/60
     const hh = Math.floor(raw_time);
     let mm = Math.ceil((raw_time%1)*60);
-    if (mm == 0) mm = "00";
+    if (mm === 0) mm = "00";
+    if (mm < 10) {
+        mm = `0${m}`
+    }
     let time_string = ""
     hh < 12 ? time_string = `${hh}:${mm} AM`: time_string = `${hh-12}:${mm} PM`
     return time_string
