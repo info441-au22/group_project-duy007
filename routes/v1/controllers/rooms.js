@@ -11,10 +11,10 @@ router.get("/", async (req, res, next) => {
     if (req.query.room_number) filters.room_number = req.query.room_number
     if (req.query.time_open) filters.time_open = {$gte: parseInt(req.query.time_open)}
     if (req.query.time_close) filters.time_close = {$lte: parseInt(req.query.time_close)}
-    if (req.query.charging) req.query.charging==='true' ? filters.charging = req.query.charging: filters.charging = {$ne: true}
-    if (req.query.computer_access) req.query.computer_access==='true' ? filters.computer_access = req.query.computer_access : filters.computer_access = {$ne: true}
-    if (req.query.reservation_required) req.query.reservation_required==='true' ? filters.reservation_required = req.query.reservation_required : filters.reservation_required = {$ne: true}
-    if (req.query.private_space) req.query.private_space==='true' ? filters.private_space = req.query.private_space : filters.private_space = {$ne: true}
+    if (req.query.charging) filters.charging = req.query.charging
+    if (req.query.computer_access) filters.computer_access = req.query.computer_access
+    if (req.query.reservation_required) filters.reservation_required = req.query.reservation_required
+    if (req.query.private_space) filters.private_space = req.query.private_space
     console.log(filters)
     try {
         let rooms = await req.models.Room.find(filters);
