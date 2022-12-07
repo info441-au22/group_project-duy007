@@ -20,7 +20,7 @@ async function main() {
         private_space: Boolean,
         reservation_required: Boolean, 
         likes: [String],
-        modified_date: Number
+        modified_date: String
     });
     models.Room = mongoose.model('Room', roomSchema);
     console.log("Comment Room created");
