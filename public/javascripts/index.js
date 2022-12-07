@@ -26,7 +26,8 @@ async function loadRooms(url) {
                     <div class="card-body">
                     <p class="fs-7">Likes: ${room.likes.length}<p>
                     <h3 class="fs-6 card-titlefs-7 mb-0">${room.room_number !== "None" ? `${room.building} ${room.room_number}` : `${room.building}`}</h3>
-                    <p class="fs-8 card-text">${room.location}</p>
+                    <p class="fs-8 card-text mb-0">${room.location}</p>
+                    <p class="fs-8 card-text">Noise Level: ${room.sound_level}</p>
                     <p class="fs-7 card-text">${room.description}</p>
                     <p class="fs-7 card-text">Hours: ${timeToString(room.time_open)} - ${timeToString(room.time_close)}</p>
                     <p class="fs-7 card-text mb-0">Charging: ${room.charging ? "Available" : "Not available"}</p>
