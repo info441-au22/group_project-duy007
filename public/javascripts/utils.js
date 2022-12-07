@@ -37,7 +37,7 @@ function timeToString(time) {
     let mm = Math.ceil((raw_time%1)*60);
     if (mm === 0) mm = "00";
     if (mm < 10) {
-        mm = `0${m}`
+        mm = `0${mm}`
     }
     let time_string = ""
     hh < 12 ? time_string = `${hh}:${mm} AM`: time_string = `${hh-12}:${mm} PM`
