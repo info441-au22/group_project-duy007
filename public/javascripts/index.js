@@ -20,8 +20,8 @@ async function loadRooms(url) {
                 <div class="col-md-8">
                     <span class="heart-button-span ${myIdentity? "": "d-none"}">
                     ${room.likes && room.likes.includes(myIdentity) ?
-                        `<button class="heart_button" onclick='unlikeRoom("${room._id}")'>&#x2665;</button>` :
-                        `<button class="heart_button" onclick='likeRoom("${room._id}")'>&#x2661;</button>`}
+                        `<button class="btn" onclick='unlikeRoom("${room._id}")'><img src="/imgs/like.svg"></button>` :
+                        `<button class="btn" onclick='likeRoom("${room._id}")'><img src="/imgs/dislike.svg"></button>`}
                     </span>
                     <div class="card-body">
                     <p class="fs-7">Likes: ${room.likes.length}<p>

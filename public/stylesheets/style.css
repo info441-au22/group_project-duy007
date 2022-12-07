@@ -131,3 +131,7 @@ input:valid + span::after {
 }
 
 
+.heart_button {
+  border: none;
+  background-color: none;
+}
