@@ -5,7 +5,7 @@ import logger from 'morgan';
 import sessions from 'express-session'
 import msIdExpress from 'microsoft-identity-express'
 import fileUpload from 'express-fileupload';
-
+// https://studyroomfinder.dhnguyen.me/redirect
 const appSettings = {
     appCredentials: {
         clientId:  "2f7354d4-964f-435b-b638-e7c7dfd0b096",
@@ -13,7 +13,7 @@ const appSettings = {
         clientSecret:  "ucV8Q~DdVenOGoAWLJTrRz7oAxXmJ-t20sejobpP"
     },	
     authRoutes: {
-        redirect: "https://studyroomfinder.dhnguyen.me/redirect", //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
+        redirect: "http://localhost:3000/redirect", //note: you can explicitly make this "localhost:3000/redirect" or "examplesite.me/redirect"
         error: "/error", // the wrapper will redirect to this route in case of any error.
         unauthorized: "/unauthorized" // the wrapper will redirect to this route in case of unauthorized access attempt.
     }

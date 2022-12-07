@@ -43,16 +43,53 @@ async function loadRooms(url) {
 }
 
 async function insertSubmit(event) {
-  await delay(5000);
-  await loadRooms(`api/${apiVersion}/rooms/`);
+  event.preventDefault();
+  document.getElementById("room_box").innerText = "Insertion...";
+  const valid_open = window.getComputedStyle(
+    document.querySelector('#input_time_open'), ':invalid'
+  )
+  const valid_close = window.getComputedStyle(
+    document.querySelector('#input_time_close'), ':invalid'
+  )
+  if (valid_open === null || valid_close === null ) {
+    displayError()
+    throw new Error(
+      `time open and close are invalid`)
+  };
+  const local = document.getElementById("input_location").value;
+  const s_lvl = document.getElementById("input_sound_level").value;
+  const build = document.getElementById("input_building").value;
+  const r_num = document.getElementById("input_room_number").value;
+  const desc = document.getElementById("input_description").value;
+  const img = document.getElementById("image").value;
+  if (local === "" || s_lvl === "" || build==="" || r_num==="" || desc===""|| img==="") {
+    displayError()
+    throw new Error(
+      `input are invalid`)
+  };
+  const formData = new FormData(document.getElementById("room_form"));
+  const res = await fetch(`api/${apiVersion}/rooms`, {
+    method: "POST",
+    body: formData
+  })
+  document.getElementById("room_box").innerText = "Inserting...";
+  await new Promise(resolve => {
+    setTimeout(resolve, 5000)});
+  if (res.status === 200) { 
+    await loadRooms(`api/${apiVersion}/rooms/`)
+  } else {
+    displayError()
+    throw new Error(
+      `${res.error}`)
+  }
 }
 
 async function queryRoom() {
     let query_url = `api/${apiVersion}/rooms?`;
     if (document.getElementById("charging").checked) query_url = query_url.concat(`charging=true&`);
     if (document.getElementById("computer_access").checked) query_url = query_url.concat(`computer_access=true&`);
-    if (document.getElementById("private_space").checked) query_url = query_url.concat(`&private_space=true&`);
-    if (document.getElementById("reservation_required").checked) query_url = query_url.concat(`&reservation_required=true&`);
+    if (document.getElementById("private_space").checked) query_url = query_url.concat(`private_space=true&`);
+    if (document.getElementById("reservation_required").checked) query_url = query_url.concat(`reservation_required=true&`);
     const location = encodeURIComponent(document.getElementById("location").value);
     if (location !== '') query_url = query_url.concat(`location=${location}&`);
     const sound_level = encodeURIComponent(document.getElementById("sound_level").value);
@@ -83,15 +120,15 @@ function loadInsertForm() {
     <div class="filter-flex">
       <div>
         <label for="image">Upload Sample Image of Study Space:</label>
-        <input type="file" name="image" accept="image/*"/>
+        <input type="file" id="image" name="image" accept="image/*"/ required>
         <div>
-          <label for="input_time_open">Choose room open time (opening hours 6:00AM to 12:00PM):</label>
+          <label for="input_time_open">Choose room open time (opening hours 6:00AM to 12:59PM):</label>
           <input type="time" id="input_time_open" name="input_time_open"
                 min="06:00" max="12:59" required>
           <span class="validity"></span>
         </div>
         <div>
-          <label for="input_time_close">Choose room closed time (opening hours 1:00PM to 12:59AM):</label>
+          <label for="input_time_close">Choose room closed time (closing hours 1:00PM to 12:59AM):</label>
           <input type="time" id="input_time_close" name="input_time_close"
                 min="13:00" max="24:59" required>
           <span class="validity"></span>
@@ -120,19 +157,19 @@ function loadInsertForm() {
       <div>
         <div>
           <label for="input_building">Building</label>
-          <input type="text" id="input_building" name="input_building" placeholder="MGH">
+          <input type="text" id="input_building" name="input_building" placeholder="MGH" required>
         </div>
         <div>
           <label for="input_room_number">Room Number</label>
-          <input type="text" id="input_room_number" name="input_room_number" placeholder="430">
+          <input type="text" id="input_room_number" name="input_room_number" placeholder="430" required>
         </div>
         <div>
           <label for="input_description">Description</label>
-          <input type="text" id="input_description" name="input_description" placeholder="Input a short description">
+          <input type="text" id="input_description" name="input_description" placeholder="Input a short description" required>
           </div>
         <div>
           <label for="sound-select">Choose a noise level:</label>
-          <select name="input_sound_level" id="input_sound_level">
+          <select name="input_sound_level" id="input_sound_level" required>
               <option value="">Please choose a noise level</option>
               <option value="Quiet">Quiet</option>
               <option value="Somewhat Quiet">Somewhat Quiet</option>
@@ -141,7 +178,7 @@ function loadInsertForm() {
           </select>
         </div>
         <label for="input_location-select">Choose a location:</label>
-        <select name="input_location" id="input_location">
+        <select name="input_location" id="input_location" required>
             <option value="">Please choose a location</option>
             <option value="North Campus">North</option>
             <option value="Central Campus">Central</option>
@@ -155,8 +192,6 @@ function loadInsertForm() {
 
     <div class="center-button">
       <input class="submit-button" type="submit" onClick="queryRoom()">
-    </div>
-
   </form>
   <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>`;
 }
